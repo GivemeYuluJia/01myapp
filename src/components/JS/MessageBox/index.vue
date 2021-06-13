@@ -1,18 +1,24 @@
 <template>
-    <div class="messageBox">
-        <p>{{content}}</p>
-        <div>
-            <div @click="handleCancel">{{cancel}}</div>
-            <div @click="handleOk">{{ok}}</div>
+    <div id="box" ref="box">
+        <div class="messageBox" >
+            <p>{{content}}</p>
+            <div>
+                <div @click="handleCancel">{{cancel}}</div>
+                <div @click="handleOk">{{ok}}</div>
+            </div>
         </div>
     </div>
 </template>
 <script>
 export default {
-  name: 'MessageBox'
+  name: 'MessageBox',
+  mounted() {
+    this.$refs.box.style.height = document.documentElement.clientHeight + 'px'
+  }
 }
 </script>
 <style scoped>
+    #box {position: fixed;top: 0;left: 0; width: 100%;background: rgba(0,0,0,0.4);}
     .messageBox{width: 260px;height: 148px;border: 1px #ccc solid;background: white;box-shadow: 3px 3px 3px 3px #ccc;
         position: absolute;left: 50%;top: 50%;margin: -74px 0 0 -130px;}
     .messageBox p{text-align: center;line-height: 40px;padding: 10px;}

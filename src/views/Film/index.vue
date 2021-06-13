@@ -40,10 +40,11 @@ export default {
     }
   },
   mounted() {
-    this.$refs.main.style.height = document.documentElement.clientHeight + 'px'
+    // console.log(document.documentElement.clientHeight)
+    // this.$refs.main.style.height = document.documentElement.clientHeight + 'px'
     var self = this
     setTimeout(() => {
-      console.log('213', this.$store.state.city.id, window.localStorage.getItem('nowId'), this.$store.state.city.id === window.localStorage.getItem('nowId'))
+      // console.log('213', this.$store.state.city.id, window.localStorage.getItem('nowId'), this.$store.state.city.id === window.localStorage.getItem('nowId'))
       if (this.$store.state.city.id === window.localStorage.getItem('nowId')) { return }
       messageBox({
         content: '无法获取当前城市定位，请手动选择当前城市',

@@ -23,6 +23,7 @@
 <script>
 import axios from 'axios'
 // import BScroll from 'better-scroll'
+// better-scroll与element ui无限加载无法共适应
 export default {
   name: 'NowPlaying',
   data() {
@@ -42,7 +43,7 @@ export default {
     var cityId = this.$store.state.city.id
     if (this.prevCityId === cityId) { return }
     this.isLoading = true
-    console.log(123)
+    // console.log(123)
     axios({
       url: `https://m.maizuo.com/gateway?cityId=${cityId}&pageNum=1&pageSize=10&type=1&k=6395640`,
       headers: {
@@ -54,7 +55,7 @@ export default {
       this.filmList = res.data.data.films
       this.total = res.data.data.total
       this.isLoading = false
-      this.prevCityId = cityId
+      // this.prevCityId = cityId
       // this.$nextTick(() => {
       //   this.scroll = new BScroll(this.$refs.film_body, {
       //     click: true
@@ -99,8 +100,8 @@ export default {
 #content .film_body{ flex:1; overflow:auto;}
 .film_body ul{ margin:0 12px; overflow: hidden;}
 .film_body ul li{ margin-top:12px; display: flex; align-items:center; border-bottom: 1px #e6e6e6 solid; padding-bottom: 10px;}
-.film_body .pic_show{ width:64px; height: 90px;}
-.film_body .pic_show img{ width:100%;}
+.film_body .pic_show{ width:64px; height: 94px;}
+.film_body .pic_show img{ width:100%;height: 100%;}
 .film_body .info_list { margin-left: 10px; flex:1; position: relative;}
 .film_body .info_list h2{ font-size: 17px; line-height: 24px; width:150px; overflow: hidden; white-space: nowrap; text-overflow:ellipsis;}
 .film_body .info_list p{ font-size: 13px; color:#666; line-height: 22px; width:200px; overflow: hidden; white-space: nowrap; text-overflow:ellipsis;}

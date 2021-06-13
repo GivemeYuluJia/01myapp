@@ -1,6 +1,6 @@
 <template>
     <div id="detailContrainer" class="slide-enter-active" v-if="detailMoive">
-        <Header :title="detailMoive.name">
+        <Header :title="detailMoive.name" style="position:fixed">
             <i class="iconfont iconfanhui" @click="handleToBack"></i>
         </Header>
         <div id="content" class="contentDetail">
@@ -107,13 +107,13 @@ export default {
 }
 </script>
 <style scoped>
-#detailContrainer{position: absolute;left: 0;top: 0;z-index: 100;width: 100%;min-height:100%;background-color: #f4f4f4;}
+#detailContrainer{position: absolute;left: 0;top: 0;z-index: 100;width: 100%;height:100%;background-color: #f4f4f4;}
 /* #detailContrainer.slide-enter-active{ animation:.3s slideMove;}
 @keyframes slideMove{
     0%{ transform : translateX(100%); }
     100%{ transform : translateX(0); }
 } */
-#content.contentDetail{display: block;margin-bottom: 0;}
+#content.contentDetail{display: block;margin-bottom: 0;margin-top: 51px;}
 #content .detail_list{height: 200px;width: 100%;position: relative;overflow: hidden;}
 .detail_list .detail_list_bg{width: 100%;height:100%;background: 0 40%; filter: blur(20px); background-size:cover; position: absolute; left: 0; top: 0;}
 .detail_list .detail_list_filter{ width:100%; height:100%; position: absolute;background-color: #40454d;opacity: .55; position: absolute; left: 0; top: 0; z-index: 1;}

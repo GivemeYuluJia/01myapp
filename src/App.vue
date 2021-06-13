@@ -18,5 +18,6 @@ export default {
 }
 </script>
 <style scoped>
+div{overflow: hidden;height: 100%;}
   /* section{padding-bottom: 52px;} */
 </style>>

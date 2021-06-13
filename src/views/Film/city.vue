@@ -2,7 +2,7 @@
   <div class="city_body"  ref="mychild">
     <Loading v-if="isLoading"></Loading>
     <div class="city_list" ref="city_list" v-else>
-      <!-- <Scroller ref="city"> -->
+      <Scroller ref="city">
         <div style="overflow:hidden">
           <div class="city_hot">
             <h2>热门城市</h2>
@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>
-      <!-- </Scroller> -->
+      </Scroller>
     </div>
     <div class="city_index">
       <ul>
@@ -30,14 +30,15 @@
 </template>
 <script>
 import axios from 'axios'
-import BScroll from 'better-scroll'
+// import BScroll from 'better-scroll'
 export default {
   name: 'City',
   data() {
     return {
       cityList: [],
       hotList: [],
-      isLoading: true
+      isLoading: true,
+      scroll: {}
     }
   },
   mounted() {
@@ -49,6 +50,14 @@ export default {
       this.cityList = JSON.parse(cityList)
       this.hotList = JSON.parse(hotList)
       this.isLoading = false
+      // this.$nextTick(() => {
+      //   this.scroll = new BScroll(this.$refs.city_list, {
+      //     click: true
+      //   })
+      //   this.scroll.on('touchEnd', pos => {
+      //     this.scroll.refresh()
+      //   })
+      // })
     } else {
       axios({
         url: 'https://m.maizuo.com/gateway?k=2600174',
@@ -56,26 +65,27 @@ export default {
           'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.0.4","e":"16189287264989141385216001"}',
           'X-Host': 'mall.film-ticket.city.list'
         }
-      }).then(res => {
+      }).then((res) => {
       //   console.log(res.data.data.cities)
         // [{index: 'A',list: [{},{}]}]
         this.isLoading = false
         var { cityList, hotList } = this.formatCityList(res.data.data.cities)
         this.cityList = cityList
         this.hotList = hotList
-        console.log(this.cityList, this.hotList)
+        // console.log(this.cityList, this.hotList)
         // 本地存储
         window.localStorage.setItem('cityList', JSON.stringify(cityList))
         window.localStorage.setItem('hotList', JSON.stringify(hotList))
-        this.$nextTick(() => {
-          this.scroll = new BScroll(this.$refs.city_list, {
-            click: true
-          })
-          this.scroll.on('touchEnd', pos => {
-            this.scroll.refresh()
-            console.log(1)
-          })
-        })
+        console.log(this)
+        // this.$nextTick(() => {
+        //   this.scroll = new BScroll(this.$refs.city_list, {
+        //     click: true
+        //   })
+        //   this.scroll.on('touchEnd', pos => {
+        //     this.scroll.refresh()
+        //     console.log(1)
+        //   })
+        // })
       })
     }
   },
@@ -106,19 +116,20 @@ export default {
         hotList
       }
     },
+    ToScrollTop(y) {
+      this.scroll.scrollTo(0, -y)
+    },
     // 页面定位
     handleToIndex(index) {
       // console.log(this.$refs.city_sort.getElementsByTagName('h2'))
       console.log('111', this.$refs.city_sort.parentNode.scrollTop)
       var h2 = this.$refs.city_sort.getElementsByTagName('h2')
       console.log('222', h2[index].offsetTop)
-      this.ToScrollTop(h2[index].offsetTop)
-      // this.$refs.city.ToScrollTop(h2[index].offsetTop)
+      // this.scroll.scrollTo(0, -h2[index].offsetTop)
+      // this.ToScrollTop(h2[index].offsetTop)
+      this.$refs.city.ToScrollTop(h2[index].offsetTop)
       // this.$refs.city_sort.parentNode.scrollTop = h2[index].offsetTop
       console.log('333', this.$refs.city_sort.parentNode.scrollTop, h2[index].offsetTop)
-    },
-    ToScrollTop(y) {
-      this.scroll.scrollTo(0, -y)
     },
     // 页面跳转
     handleToCity(name, id) {
