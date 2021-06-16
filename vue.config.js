@@ -1,6 +1,12 @@
 module.exports = {
+  // 静态路径
+  publicPath: '/YY',
   devServer: {
     proxy: {
+      api: {
+        target: 'http://localhost:3000',
+        ChangeOrigin: true
+      },
       ajax: {
         target: 'https://m.maoyan.com',
         ChangeOrigin: true

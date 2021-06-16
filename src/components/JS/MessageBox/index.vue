@@ -3,8 +3,8 @@
         <div class="messageBox" >
             <p>{{content}}</p>
             <div>
-                <div @click="handleCancel">{{cancel}}</div>
-                <div @click="handleOk">{{ok}}</div>
+                <div @click="handleCancel" v-if="cancel">{{cancel}}</div>
+                <div @click="handleOk" v-if="ok">{{ok}}</div>
             </div>
         </div>
     </div>

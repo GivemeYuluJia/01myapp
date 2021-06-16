@@ -25,6 +25,7 @@ export default {
         default: () => import('@/views/Film/nowplaying'),
         detail: () => import(/* webpackChunkName: "yjgroup" */ '@/views/Film/detail')
       },
+      // 将path的filmId传到detail页面 高度耦合
       props: {
         detail: true
       }
