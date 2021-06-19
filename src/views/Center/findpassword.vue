@@ -85,6 +85,15 @@ export default {
               console.log('')
             }
           })
+        } else if (status === -2) {
+          messageBox({
+            title: '修改密码',
+            content: '密码错误',
+            ok: '确定',
+            handleOk() {
+              console.log('')
+            }
+          })
         } else {
           messageBox({
             title: '修改密码',

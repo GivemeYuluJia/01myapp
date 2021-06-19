@@ -58,6 +58,33 @@ export default {
               self.$router.push('/center/login')
             }
           })
+        } else if (status === -5) {
+          messageBox({
+            title: '注册',
+            content: '用户名或邮箱未输入',
+            ok: '确定',
+            handleOk() {
+              console.log('')
+            }
+          })
+        } else if (status === -4) {
+          messageBox({
+            title: '注册',
+            content: '旧密码或新密码不能为空',
+            ok: '确定',
+            handleOk() {
+              console.log('')
+            }
+          })
+        } else if (status === -3) {
+          messageBox({
+            title: '注册',
+            content: '两次密码输入不一致',
+            ok: '确定',
+            handleOk() {
+              console.log('')
+            }
+          })
         } else {
           messageBox({
             title: '注册',

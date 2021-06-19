@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import cinemaRouter from './cinema'
 import filmRouter from './film'
 import centerRouter from './center'
+import adminRouter from './admin'
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,7 @@ const routes = [
   cinemaRouter,
   filmRouter,
   centerRouter,
+  adminRouter,
   {
     path: '*', //  通配符
     redirect: '/film'
