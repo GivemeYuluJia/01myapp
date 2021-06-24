@@ -28,6 +28,9 @@
 import axios from 'axios'
 export default {
   name: 'Admin',
+  beforeMount() {
+    this.$store.commit('TABBAR_HIDE', false)
+  },
   beforeRouteEnter (to, from, next) {
     axios.get('/api/admin').then((res) => {
       const ststus = res.data.status
@@ -63,6 +66,7 @@ export default {
 
   body > .el-container {
     margin-bottom: 40px;
+    height: 100%;
   }
 
   .el-container:nth-child(5) .el-aside,

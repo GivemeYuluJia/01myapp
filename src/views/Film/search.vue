@@ -39,7 +39,7 @@ export default {
       }
     }
   },
-  watch: {
+  watch: { // 计算属性不适合异步操作
     message(newVal) {
       // console.log(newVal, this.source)
       var cityId = this.$store.state.city.id

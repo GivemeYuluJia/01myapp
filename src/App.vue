@@ -5,15 +5,19 @@
         <router-view></router-view>
       </keep-alive>
     <!-- </section> -->
-    <TabBar></TabBar>
+    <TabBar v-show="isTabbarShow"></TabBar>
   </div>
 </template>
 
 <script>
 import TabBar from '@/components/TabBar'
+import { mapState } from 'vuex'
 export default {
   components: {
     TabBar
+  },
+  computed: {
+    ...mapState(['isTabbarShow'])
   }
 }
 </script>
